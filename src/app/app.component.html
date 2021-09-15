@@ -1,0 +1,63 @@
+<h4>Mandatory Fields*</h4>
+
+<div class="container">
+  <mat-form-field appearance="fill">
+    <mat-label>Plant</mat-label>
+    <mat-select [formControl]="plantControl" (selectionChange)="onPlantChange($event)" required>
+      <mat-option>---</mat-option>
+      <mat-option *ngFor="let plant of plants" [value]="plant">{{plant.name}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="plantControl.hasError('required')">Please choose an Plant</mat-error>
+  </mat-form-field>
+</div>
+
+<div class="elements">
+  <mat-form-field appearance="fill">
+    <mat-label>Customer ID</mat-label>
+    <mat-select [formControl]="customerControl" [(ngModel)]="selectedCustomer" required>
+      <mat-option>---</mat-option>
+      <mat-option *ngFor="let customer of selectCustomer" [value]="customer">{{customer}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="customerControl.hasError('required')">Please choose a Customer ID</mat-error>
+  </mat-form-field>
+
+  <div class="elements">
+    <mat-form-field appearance="fill">
+      <mat-label>Brand</mat-label>
+      <mat-select [formControl]="brandControl" [(ngModel)]="selectedBrand" required>
+        <mat-option>---</mat-option>
+        <mat-option *ngFor="let brand of selectBrand" [value]="brand" index=i>{{brand}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="brandControl.hasError('required')">Please choose a Brand</mat-error>
+    </mat-form-field>
+
+    <div class="elements">
+      <mat-form-field appearance="fill">
+        <mat-label>Channel</mat-label>
+        <mat-select [formControl]="channelControl" [(ngModel)]="selectedChannel" required>
+          <mat-option>---</mat-option>
+          <mat-option *ngFor="let channel of selectChannel" [value]="channel">{{channel}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="channelControl.hasError('required')">Please choose a Channel</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+<button (click)='onSubmit($event)'>Search</button>
+
+<table id="table">
+  <tr>
+    <th>Plant</th>
+    <th>Customer</th>
+    <th>Brand</th>
+    <th>Channel</th>
+  </tr>
+  <tr>
+    <td>{{displayPlant}}</td>
+    <td>{{displayCustomer}}</td>
+    <td>{{displayBrand}}</td>
+    <td> {{displayChannel}}</td>
+  </tr>
+</table>
+
+<app-table></app-table>
